@@ -1,0 +1,40 @@
+{
+  "name": "oa-frontend-conversiontracking",
+  "version": "1.0.0",
+  "description": "Stores click-id passed in URL to landingpage; submits click-id to network on conversion",
+  "main": "index.js",
+  "scripts": {
+    "build:landingpage": "mkdir -p dist && browserify  src/landingpage.js > dist/landingpage.js ",
+    "build:conversion": "mkdir -p dist && browserify  src/conversion.js > dist/conversion.js ",
+    "build:prelander": "mkdir -p dist && browserify  src/prelander.js > dist/prelander.js ",
+    "minify:landingpage": "uglifyjs --source-map \"includeSources,url=landingpage.js.map\" ./dist/landingpage.js  -o ./dist/landingpage.min.js",
+    "minify:conversion": "uglifyjs --source-map \"includeSources,url=conversion.js.map\" ./dist/conversion.js  -o ./dist/conversion.min.js",
+    "minify:prelander": "uglifyjs --source-map \"includeSources,url=prelander.js.map\" ./dist/prelander.js  -o ./dist/prelander.min.js",
+    "build:all" : "npm-run-all -p build:landingpage build:conversion build:prelander",
+    "minify:all" : "npm-run-all -p minify:landingpage minify:conversion minify:prelander",
+    "watch": "chokidar 'src/*'  -c 'create_build'",
+    "create_build" : "npm-run-all -s build:all minify:all", 
+    "start": "npm-run-all -p create_build watch",
+    "prepublish": "npm-run-all -p create_build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onlineactivitybv/frontend-conversiontracking.git"
+  },
+  "keywords": [
+    "javascript",
+    "conversion-tracking"
+  ],
+  "author": "Sander Backus <sander@onlineactivity.nl>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/onlineactivitybv/frontend-conversiontracking/issues"
+  },
+  "homepage": "https://github.com/onlineactivitybv/frontend-conversiontracking#readme",
+  "devDependencies": {
+    "browserify": "^15.2.0",
+    "chokidar-cli": "^1.2.0",
+    "npm-run-all": "^4.1.2",
+    "uglify-js": "^3.3.10"
+  }
+}
