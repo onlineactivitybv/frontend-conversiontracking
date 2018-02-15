@@ -12,7 +12,7 @@
     "minify:prelander": "uglifyjs --source-map \"includeSources,url=prelander.js.map\" ./dist/prelander.js  -o ./dist/prelander.min.js",
     "build:all": "npm-run-all -p build:landingpage build:conversion build:prelander",
     "minify:all": "npm-run-all -p minify:landingpage minify:conversion minify:prelander",
-    "watch": "chokidar 'src/*'  -c 'create_build'",
+    "watch": "chokidar 'src/*'  -c 'npm-run-all -p create_build'",
     "create_build": "npm-run-all -s build:all minify:all",
     "start": "npm-run-all -p create_build watch",
     "prepublish": "npm-run-all -p create_build"
