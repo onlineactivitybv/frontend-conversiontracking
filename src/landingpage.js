@@ -11,7 +11,7 @@
 	})();
 
 	if (document.currentScript) {
-		var param = document.currentScript.getAttribute('data-param') || 'oa_id';
+		var param = document.currentScript.getAttribute('data-param') || document.currentScript.getAttribute('data-params') || 'oa_id';
 		var cookie_days = document.currentScript.getAttribute('data-cookie-days') || '30';
 
 		// extract clickid from query string (https://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513)
