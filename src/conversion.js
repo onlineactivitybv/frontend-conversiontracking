@@ -35,8 +35,18 @@
 
 		if(!click_id || click_id == '') {
 			// check if click_id is in current url
-			var param = document.currentScript.getAttribute('data-param') || 'oa_id';
-			click_id = decodeURIComponent((new RegExp('[?|&]' + param + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+			var param = document.currentScript.getAttribute('data-param') || document.currentScript.getAttribute('data-params') || 'oa_id';
+			var params = param.split(',');
+			for (var i=0;i<params.length;i++) {
+				var x = params[i].replace(/^\s+|\s+$/gm,'');
+				if (x.length) {
+					click_id = decodeURIComponent((new RegExp('[?|&]' + x + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+		
+					if(click_id) {
+						break;
+					}
+				}
+			}
 		}
 
 		// request script-callback; with or without oa-click-id
