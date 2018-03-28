@@ -18,7 +18,7 @@ When using a prelander hosted on a different domainname; you need to pass tracki
 | data-params | oa_clickid | comma seperated variable names to add to links and forms  |
 |data-link-selector | a[href], area[href] | selector for links (with href attribute) |
 | data-form-selector | form |selector for forms, variables added to action or hidden input fields |
-| data-iframe-selector | iframe |selector for iframe, variables added to src |
+| data-iframe-selector | iframe |selector for iframe, variables added to src. (use data-original-src="http://" to set source to prevent double page loads) |
 
 
 

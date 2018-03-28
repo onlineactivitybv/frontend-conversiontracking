@@ -108,27 +108,32 @@
 				}
 			}
 		}
-		// add to iframes
-		var iframes = document.querySelectorAll(iframe_selector);
-		for(var i=0;i<iframes.length;i++) {
-			var link = iframes[i].getAttribute('src');
-			if(link.length && link.charAt(0) != '#') {
-				var anchor_pos = link.indexOf('#');
-				var anchorcontent = '';
-				if(anchor_pos > -1) {
-					anchorcontent = link.substring(anchor_pos+1);
-					link = link.substring(0, anchor_pos);
-				}
-
-				link += (link.indexOf('?') > -1 ? '&' : '?') + query_string;
-				if(anchorcontent.length) {
-					link += '#' + anchorcontent;
-				}
-
-				iframes[i].setAttribute('src', link);
-			}
+	} else {
+		var query_string = '';
+	}
+	
+	// add to iframes
+	var iframes = document.querySelectorAll(iframe_selector);
+	for(var i=0;i<iframes.length;i++) {
+		var link = iframes[i].getAttribute('src');
+		if (!link || link == undefined || link.length == 0) {
+			link = iframes[i].getAttribute('data-original-src');
 		}
+		if(link.length && link.charAt(0) != '#') {
+			var anchor_pos = link.indexOf('#');
+			var anchorcontent = '';
+			if(anchor_pos > -1) {
+				anchorcontent = link.substring(anchor_pos+1);
+				link = link.substring(0, anchor_pos);
+			}
 
+			link += (link.indexOf('?') > -1 ? '&' : '?') + query_string;
+			if(anchorcontent.length) {
+				link += '#' + anchorcontent;
+			}
+
+			iframes[i].setAttribute('src', link);
+		}
 	}
 
 
