@@ -7,7 +7,7 @@ When using a prelander hosted on a different domainname; you need to pass tracki
 
 *When using redirects (for ex: javascript) other than links or forms, you'll need to manually append the click-id variables*
 
-    <script async 
+    <script defer 
 		src="https://cdn.jsdelivr.net/npm/oa-frontend-conversiontracking@1/dist/prelander.min.js"
 		data-params="oa_clickid,subid2">
 	</script>
