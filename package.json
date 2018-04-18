@@ -1,6 +1,6 @@
 {
   "name": "oa-frontend-conversiontracking",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Stores click-id passed in URL to landingpage; submits click-id to network on conversion",
   "main": "index.js",
   "scripts": {
