@@ -36,5 +36,8 @@
     "chokidar-cli": "^1.2.0",
     "npm-run-all": "^4.1.2",
     "uglify-js": "^3.3.10"
+  },
+  "dependencies": {
+    "domready": "^1.0.8"
   }
 }
