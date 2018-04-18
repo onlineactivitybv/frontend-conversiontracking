@@ -1,25 +1,25 @@
 (function() {
 	var domready = require("domready");
-
+	var cs = document.currentScript || (function() {
+		var scripts = document.querySelectorAll('[data-params]');
+		if (scripts[0]) {
+			return scripts[0];
+		}
+	})();
+	
 	domready(function(){
-		document.currentScript = document.currentScript || (function() {
-			var scripts = document.querySelectorAll('[data-params]');
-			if (scripts[0]) {
-				return scripts[0];
-			}
-		})();
 	
 		var params = ['oa_clickid'];
 		var link_selector = 'a[href], area[href]';
 		var form_selector = 'form';
 		var iframe_selector = 'iframe'; 
 	
-		if (document.currentScript) {
-			var paramsdata = document.currentScript.getAttribute('data-params');
+		if (cs) {
+			var paramsdata = cs.getAttribute('data-params');
 			var params = paramsdata.split(',');
-			var linkselector_data = document.currentScript.getAttribute('data-link-selector');
-			var formselector_data = document.currentScript.getAttribute('data-form-selector');
-			var iframeselector_data = document.currentScript.getAttribute('data-iframe-selector');
+			var linkselector_data = cs.getAttribute('data-link-selector');
+			var formselector_data = cs.getAttribute('data-form-selector');
+			var iframeselector_data = cs.getAttribute('data-iframe-selector');
 	
 			if(linkselector_data) {
 				link_selector = linkselector_data;

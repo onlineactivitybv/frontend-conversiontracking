@@ -1,10 +1,6 @@
 (function() {
 	var domready = require("domready");
-
-	domready(function(){
-		var BrowserStorage = require('./browserstorage')();
-	
-		document.currentScript = document.currentScript || (function() {
+	var	cs = document.currentScript || (function() {
 			var scripts = document.querySelectorAll('[data-name="oalanding"]');
 			if (scripts[0]) {
 				return scripts[0];
@@ -12,11 +8,14 @@
 			scripts = document.querySelectorAll('[data-advertiser]');
 			return scripts[0];
 		})();
-	
-		if (document.currentScript) {
-			var param = document.currentScript.getAttribute('data-param') || document.currentScript.getAttribute('data-params') || 'oa_id';
+
+	domready(function(){
+		var BrowserStorage = require('./browserstorage')();
+		
+		if (cs) {
+			var param = cs.getAttribute('data-param') || cs.getAttribute('data-params') || 'oa_id';
 			var params = param.split(',');
-			var cookie_days = document.currentScript.getAttribute('data-cookie-days') || '30';
+			var cookie_days = cs.getAttribute('data-cookie-days') || '30';
 	
 			var click_id = false; 
 			for (var i=0;i<params.length;i++) {

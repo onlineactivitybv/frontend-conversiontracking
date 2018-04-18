@@ -1,28 +1,26 @@
 (function() {
 	var domready = require("domready");
+	var cs = document.currentScript || (function() {
+		var scripts = document.querySelectorAll('[data-name="oaconversion"]');
+		if (scripts[0]) {
+			return scripts[0];
+		}
+		scripts = document.querySelectorAll('[data-advertiser]');
+		return scripts[0];
+	})();
 
 	domready(function(){
 		var BrowserStorage = require('./browserstorage')();
 
-		document.currentScript = document.currentScript || (function() {
-			var scripts = document.querySelectorAll('[data-name="oaconversion"]');
-			if (scripts[0]) {
-				return scripts[0];
-			}
-			scripts = document.querySelectorAll('[data-advertiser]');
-			return scripts[0];
-		})();
-		
-	
-		if (document.currentScript) {
-			var currentScript = document.currentScript;
-			var advertiser = document.currentScript.getAttribute('data-advertiser');
-			var advertiser_domain = document.currentScript.getAttribute('data-advertiser-domain');
-			var offer_hash = document.currentScript.getAttribute('data-offer-hash');
-			var offer_id = document.currentScript.getAttribute('data-offer-id');
-			var unique_conversion_id = document.currentScript.getAttribute('data-unique-conversion-id');
-			var ordervalue = document.currentScript.getAttribute('data-ordervalue');
-			var event_id = document.currentScript.getAttribute('data-event-id');
+		if (cs) {
+			var currentScript = cs;
+			var advertiser = cs.getAttribute('data-advertiser');
+			var advertiser_domain = cs.getAttribute('data-advertiser-domain');
+			var offer_hash = cs.getAttribute('data-offer-hash');
+			var offer_id = cs.getAttribute('data-offer-id');
+			var unique_conversion_id = cs.getAttribute('data-unique-conversion-id');
+			var ordervalue = cs.getAttribute('data-ordervalue');
+			var event_id = cs.getAttribute('data-event-id');
 	
 			if (advertiser_domain == '') {
 				alert('OA Conversion: missing advertiser domain');
@@ -38,7 +36,7 @@
 	
 			if(!click_id || click_id == '') {
 				// check if click_id is in current url
-				var param = document.currentScript.getAttribute('data-param') || document.currentScript.getAttribute('data-params') || 'oa_id';
+				var param = cs.getAttribute('data-param') || cs.getAttribute('data-params') || 'oa_id';
 				var params = param.split(',');
 				for (var i=0;i<params.length;i++) {
 					var x = params[i].replace(/^\s+|\s+$/gm,'');
@@ -99,7 +97,7 @@
 				
 			} else {
 				// NO XHR2; image pixel!
-				document.currentScript.onerror();
+				currentScript.onerror();
 			}
 		} else {
 			alert('OA Conversion pixel error!');
