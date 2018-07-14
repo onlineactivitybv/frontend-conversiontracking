@@ -13,7 +13,7 @@
 		var BrowserStorage = require('./browserstorage')();
 		
 		if (cs) {
-			var param = cs.getAttribute('data-param') || cs.getAttribute('data-params') || 'oa_id';
+			var param = cs.getAttribute('data-param') || cs.getAttribute('data-params') || 'oa_id,oa_clickid';
 			var params = param.split(',');
 			var cookie_days = cs.getAttribute('data-cookie-days') || '30';
 	
