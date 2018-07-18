@@ -22,13 +22,11 @@
 			var ordervalue = cs.getAttribute('data-ordervalue');
 			var event_id = cs.getAttribute('data-event-id');
 	
-			if (advertiser_domain == '') {
-				alert('OA Conversion: missing advertiser domain');
-			}
-			if (offer_id == '') {
+			if (advertiser_domain == '' || advertiser_domain === null) {
+				alert('OA Conversion: missing advertiser domain (GTM users enable document.write)');
+			} else if (offer_id == '' || offer_id === null) {
 				alert('OA Conversion: missing offer id');
-			}
-			if (offer_hash == '') {
+			} else if (offer_hash == '' || offer_hash === null) {
 				alert('OA Conversion: missing offer hash');
 			}
 	
