@@ -60,7 +60,7 @@
 			for (var key in data ) {
 			    form_data.append(key, data[key]);
 			}
-			var url = window.location.protocol == 'http:' ? 'http' : 'https';
+			var url = window.location.protocol == 'https:' ? 'https' : 'http';
 			url += '://' + advertiser_domain;
 			url += '/m/' + offer_id + '/' + offer_hash + '/?unique_conversion_id=' + encodeURIComponent(unique_conversion_id);
 			
