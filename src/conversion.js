@@ -34,7 +34,7 @@
 	
 			if(!click_id || click_id == '') {
 				// check if click_id is in current url
-				var param = cs.getAttribute('data-param') || cs.getAttribute('data-params') || 'oa_id';
+				var param = cs.getAttribute('data-param') || cs.getAttribute('data-params') || 'oa_id,oa_clickid';
 				var params = param.split(',');
 				for (var i=0;i<params.length;i++) {
 					var x = params[i].replace(/^\s+|\s+$/gm,'');
