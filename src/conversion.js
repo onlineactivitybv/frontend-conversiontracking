@@ -21,6 +21,8 @@
 			var unique_conversion_id = cs.getAttribute('data-unique-conversion-id');
 			var ordervalue = cs.getAttribute('data-ordervalue');
 			var event_id = cs.getAttribute('data-event-id');
+			var data_click_id = cs.getAttribute('data-click-id');
+
 	
 			if (advertiser_domain == '' || advertiser_domain === null) {
 				alert('OA Conversion: missing advertiser domain (GTM users enable document.write)');
@@ -41,11 +43,15 @@
 					if (x.length) {
 						click_id = decodeURIComponent((new RegExp('[?|&]' + x + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 			
-						if(click_id) {
+						if (click_id) {
 							break;
 						}
 					}
 				}
+			}
+			
+			if (!click_id || click_id == '' && data_click_id && data_click_id != '') {
+				click_id = data_click_id;
 			}
 	
 			// request script-callback; with or without oa-click-id
